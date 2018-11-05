@@ -18,8 +18,10 @@
   "homepage": "https://github.com/tencentyun/image-node-sdk#readme",
   "license": "MIT",
   "dependencies": {
+    "express": "^4.16.4",
+    "formidable": "^1.2.1",
     "random-int": "^1.0.0",
-    "request": "^2.87.0"
+    "request": "^2.88.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.5",
