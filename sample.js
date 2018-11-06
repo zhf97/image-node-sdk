@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const {
     ImageClient
-} = require('../image-node-sdk-master');
+} = require('./index');
 
 //POST请求的包体解析器
 var bodyParser = require('body-parser');
@@ -20,24 +20,24 @@ let AppId = ''; // 腾讯云 AppId
 let SecretId = ''; // 腾讯云 SecretId
 let SecretKey = ''; // 腾讯云 SecretKey
 app.post("/", (req, res, next) => {
-	
-	//解析上传过来的表单，上传文件存在回调函数的files参数里
-    form.parse(req, function (error, fields, files) {
-		//新建腾讯云OCRAPI识别客户端对象，设置设置开发者和应用信息
+
+    //解析上传过来的表单，上传文件存在回调函数的files参数里
+    form.parse(req, function(error, fields, files) {
+        //新建腾讯云OCRAPI识别客户端对象，设置设置开发者和应用信息
         let imgClient = new ImageClient({ AppId, SecretId, SecretKey });
-		imgClient.ocrHandWriting({//调用腾讯云的通用OCR识别接口,
-			formData: {
-				image: fs.createReadStream(files.image.path)//指明文件路径
-				},
-			headers: {
-				'content-type': 'multipart/form-data'
-				}
-			}).then((result) => {
-				console.log(result.body)
-				res.end(result.body)
-			}).catch((e) => {//对异常进行处理
-				console.log(e);
-			});
+        imgClient.ocrHandWriting({ //调用腾讯云的通用OCR识别接口,
+            formData: {
+                image: fs.createReadStream(files.image.path) //指明文件路径
+            },
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        }).then((result) => {
+            console.log(result.body)
+            res.end(result.body)
+        }).catch((e) => { //对异常进行处理
+            console.log(e);
+        });
     });
 });
 
