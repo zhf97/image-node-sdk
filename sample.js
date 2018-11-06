@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const {
     ImageClient
-} = require('../image-node-sdk');
+} = require('../image-node-sdk-master');
 
 //POST请求的包体解析器
 var bodyParser = require('body-parser');
